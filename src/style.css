@@ -11,12 +11,13 @@
 }
 
 .cat-info {
+    width: 1000px;
     display: flex;
     align-items: top;
 }
 
 .cat-image {
-    width: 500px;
+    width: 400px;
     margin-right: 20px;
     /* Adjust as needed for spacing */
 }
