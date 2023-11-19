@@ -1,5 +1,5 @@
-// index.js
 import { fetchBreeds, fetchCatByBreed } from './cat_api';
+import iziToast from 'izitoast';
 
 document.addEventListener('DOMContentLoaded', async function () {
   const breedSelect = document.querySelector('.breed-select');
@@ -7,12 +7,6 @@ document.addEventListener('DOMContentLoaded', async function () {
 
   try {
     const breeds = await fetchBreeds();
-    breeds.forEach(breed => {
-      const option = document.createElement('option');
-      option.value = breed.id;
-      option.text = breed.name;
-      breedSelect.appendChild(option);
-    });
 
     breedSelect.addEventListener('change', async function () {
       const selectedBreedId = breedSelect.value;
@@ -27,5 +21,15 @@ document.addEventListener('DOMContentLoaded', async function () {
     });
   } catch (error) {
     console.error('Error:', error);
+    showErrorToast('Oops! Something went wrong! Try reloading the page!');
   }
 });
+
+function showErrorToast(message) {
+  iziToast.error({
+    title: 'Error',
+    message: message,
+    position: 'topRight',
+    timeout: 5000,
+  });
+}
