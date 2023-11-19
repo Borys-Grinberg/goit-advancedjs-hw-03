@@ -2,7 +2,8 @@
 
 import axios from 'axios';
 
-const apiKey = 'ваш_ключ';
+const apiKey =
+  'live_7zO2UtHss6WanH1oLQ1vnbzQS31rHHFk6zvi69lyordiqDagXpIxykJooBldDqh8';
 axios.defaults.headers.common['x-api-key'] = apiKey;
 
 export function fetchBreeds() {
