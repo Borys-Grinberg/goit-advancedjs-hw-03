@@ -2,3 +2,56 @@
 .hidden {
     display: none;
 }
+
+.breed-select {
+    width: 15%;
+    border: 2px solid black;
+    margin-bottom: 20px;
+    /* Adjust as needed for spacing */
+}
+
+.cat-info {
+    display: flex;
+    align-items: top;
+}
+
+.cat-image {
+    width: 500px;
+    margin-right: 20px;
+    /* Adjust as needed for spacing */
+}
+
+.cat-details {
+    flex-grow: 1;
+}
+
+.cat-details h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    /* Adjust as needed for spacing */
+}
+
+.cat-details p {
+    margin-bottom: 10px;
+    /* Adjust as needed for spacing */
+}
+
+.loader {
+    width: 48px;
+    height: 48px;
+    border: 2px solid grey;
+    border-radius: 50%;
+    border-top: 2px solid #FF3D00;
+    display: inline-block;
+    animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}

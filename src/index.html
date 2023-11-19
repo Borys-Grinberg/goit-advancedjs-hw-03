@@ -11,13 +11,21 @@
 
 <body>
   <select class="breed-select"></select>
-  <p class="loader hidden">Loading data, please wait...</p>
+  <span class="loader hidden"></span>
   <p class="error hidden">Oops! Something went wrong! Try reloading the page!</p>
-  <div class="cat-info hidden"></div>
+
+  <div class="cat-info hidden">
+    <img src="" alt="Cat Image" class="cat-image">
+    <div class="cat-details">
+      <h2></h2>
+      <p class="description"></p>
+
+      <p class="temperament"></p>
+    </div>
+  </div>
 
   <script src="index.js" type="module"></script>
-  <script src="cat-api.js" type="module"></script>
-  <script src="https://cdn.jsdelivr.net/npm/slim-select/dist/slimselect.min.js"></script>
+  <script src="cat_api.js" type="module"></script>
 </body>
 
 </html>
