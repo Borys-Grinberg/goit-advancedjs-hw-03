@@ -1,0 +1,10 @@
+/* style.css */
+
+.loader,
+.error {
+    display: none;
+}
+
+.cat-info {
+    margin-top: 20px;
+}
