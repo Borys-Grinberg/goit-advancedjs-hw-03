@@ -1,4 +1,4 @@
-import { fetchBreeds, fetchCatByBreed } from './cat_api.js';
+import { fetchBreeds, fetchCatByBreed } from './cat-api.js';
 import iziToast from 'izitoast';
 
 document.addEventListener('DOMContentLoaded', async function () {
