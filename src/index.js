@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', async function () {
     breedSelect.addEventListener('change', async function () {
       const selectedBreedId = breedSelect.value;
 
-      // Show loader while fetching cat information
+      // show loader
       loader.style.display = 'inline-block';
 
       const catData = await fetchCatByBreed(selectedBreedId);
