@@ -1,9 +1,5 @@
-// index.js
-import { fetchBreeds, fetchCatByBreed } from './cat-api';
+import { fetchBreeds, fetchCatByBreed } from './cat-api.js';
 import iziToast from 'izitoast';
-
-// index.js
-// ... existing code ...
 
 document.addEventListener('DOMContentLoaded', async function () {
   const breedSelect = document.querySelector('.breed-select');
@@ -39,8 +35,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     showErrorToast('Oops! Something went wrong! Try reloading the page!');
   }
 });
-
-// ... existing code ...
 
 function showErrorToast(message) {
   iziToast.error({
