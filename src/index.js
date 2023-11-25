@@ -45,7 +45,6 @@ breedSelect.addEventListener('change', function () {
           </div>
         `;
       } else {
-        // Handle the case when catData is not as expected
         showErrorToast(
           'Oops! Unable to retrieve cat information. Please try again.'
         );
@@ -56,7 +55,6 @@ breedSelect.addEventListener('change', function () {
       showErrorToast('Oops! Something went wrong! Try reloading the page!');
     })
     .finally(() => {
-      // Hide loader after fetching cat information
       hideLoader();
     });
 });
