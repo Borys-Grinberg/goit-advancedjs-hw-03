@@ -1,5 +1,7 @@
 import SlimSelect from 'slim-select';
+
 import { fetchBreeds, fetchCatByBreed } from './cat_api';
+
 const breedSelect = document.querySelector('.breed-select');
 const catInfoDiv = document.querySelector('.cat-info');
 const loader = document.querySelector('.loader');
@@ -10,20 +12,28 @@ const slim = new SlimSelect({
 });
 
 slim.setData([]);
+breedSelect.classList.add('hidden');
+
+showLoader();
+
+fetchBreeds()
+  .then(breeds => {
+    slim.setData(breeds.map(breed => ({ text: breed.name, value: breed.id })));
+
+    hideLoader();
+  })
+  .catch(error => {
+    console.error('Error fetching cat breeds:', error);
+    showErrorToast('Oops! Something went wrong! Try reloading the page!');
+  });
 
 breedSelect.addEventListener('change', function () {
-  selectedBreedId = breedSelect.value; // Змінена змінна, щоб зберегти значення
+  selectedBreedId = breedSelect.value;
 
-  // Show loader while fetching cat information
   showLoader();
 
-  const fetchPromise = selectedBreedId
-    ? fetchCatByBreed(selectedBreedId)
-    : Promise.resolve();
-
-  fetchPromise
+  fetchCatByBreed(selectedBreedId)
     .then(catData => {
-      // Check if catData is defined and has the expected structure
       if (
         catData &&
         Array.isArray(catData) &&
@@ -33,7 +43,6 @@ breedSelect.addEventListener('change', function () {
       ) {
         const catBreed = catData[0].breeds[0];
 
-        // Display cat information
         catInfoDiv.innerHTML = `
           <div class="cat-info-inner">
             <img src="${catData[0].url}" alt="Cat Image" class="cat-image">
@@ -51,7 +60,7 @@ breedSelect.addEventListener('change', function () {
       }
     })
     .catch(error => {
-      console.error('Error:', error);
+      console.error('Error fetching cat information:', error);
       showErrorToast('Oops! Something went wrong! Try reloading the page!');
     })
     .finally(() => {
@@ -62,11 +71,13 @@ breedSelect.addEventListener('change', function () {
 function showLoader() {
   loader.style.display = 'inline-block';
   catInfoDiv.style.display = 'none';
+  breedSelect.style.display = 'none';
 }
 
 function hideLoader() {
   loader.style.display = 'none';
   catInfoDiv.style.display = 'flex';
+  breedSelect.style.display = 'block';
 }
 
 function showErrorToast(message) {
@@ -77,16 +88,3 @@ function showErrorToast(message) {
     timeout: 5000,
   });
 }
-
-// Fetch breeds and update SlimSelect outside of the event listener
-fetchBreeds()
-  .then(breeds => {
-    // Update SlimSelect with breed data
-    slim.setData(breeds.map(breed => ({ text: breed.name, value: breed.id })));
-    // Hide loader after fetching breed information
-    hideLoader();
-  })
-  .catch(error => {
-    console.error('Error:', error);
-    showErrorToast('Oops! Something went wrong! Try reloading the page!');
-  });

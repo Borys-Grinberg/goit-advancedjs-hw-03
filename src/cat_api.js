@@ -6,20 +6,12 @@ const apiKey =
 axios.defaults.headers.common['x-api-key'] = apiKey;
 
 export function fetchBreeds() {
-  return new Promise((resolve, reject) => {
-    axios
-      .get('https://api.thecatapi.com/v1/breeds')
-      .then(response => resolve(response.data))
-      .catch(error => reject(error));
-  });
+  return axios
+    .get('https://api.thecatapi.com/v1/breeds')
+    .then(response => response.data);
 }
 
 export function fetchCatByBreed(breedId) {
-  return new Promise((resolve, reject) => {
-    const url = `https://api.thecatapi.com/v1/images/search?breed_ids=${breedId}`;
-    axios
-      .get(url)
-      .then(response => resolve(response.data))
-      .catch(error => reject(error));
-  });
+  const url = `https://api.thecatapi.com/v1/images/search?breed_ids=${breedId}`;
+  return axios.get(url).then(response => response.data);
 }
