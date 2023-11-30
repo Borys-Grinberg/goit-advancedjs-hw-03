@@ -4,8 +4,8 @@
 }
 
 .breed-select {
-    width: 20% !important;
-    border: 2px solid black;
+    width: 20%;
+    border: 1px solid rgb(20, 75, 82);
     margin-bottom: 20px;
 }
 

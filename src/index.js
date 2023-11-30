@@ -7,18 +7,17 @@ const breedSelect = document.querySelector('.breed-select');
 const catInfoDiv = document.querySelector('.cat-info');
 const loader = document.querySelector('.loader');
 let selectedBreedId;
-
+breedSelect.classList.add('hidden');
 const slim = new SlimSelect({
   select: breedSelect,
 });
 
 slim.setData([]);
-breedSelect.classList.add('hidden');
 
 fetchBreeds()
   .then(breeds => {
     slim.setData(breeds.map(breed => ({ text: breed.name, value: breed.id })));
-    hideLoader(); // Hide loader after fetching breeds
+    hideLoader();
   })
   .catch(error => {
     console.error('Error fetching cat breeds:', error);
@@ -50,7 +49,7 @@ breedSelect.addEventListener('change', function () {
                 <p class="description">${catBreed.description}</p>
                 <p><strong>Temperament:</strong> ${catBreed.temperament}</p>
               </div>
-            </div>
+            </div>   
           `;
         } else {
           showErrorToast(
