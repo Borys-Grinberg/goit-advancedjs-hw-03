@@ -18,6 +18,7 @@ slim.setData([]);
 fetchBreeds()
   .then(breeds => {
     slim.setData(breeds.map(breed => ({ text: breed.name, value: breed.id })));
+    breedSelect.addEventListener('change', onBreedSelectChange);
     hideLoader();
   })
   .catch(error => {
@@ -25,7 +26,7 @@ fetchBreeds()
     showErrorToast('Oops! Something went wrong! Try reloading the page!');
   });
 
-breedSelect.addEventListener('change', function () {
+function onBreedSelectChange() {
   selectedBreedId = breedSelect.value;
 
   if (selectedBreedId) {
@@ -66,7 +67,7 @@ breedSelect.addEventListener('change', function () {
         hideLoader();
       });
   }
-});
+}
 
 function showLoader() {
   loader.style.display = 'inline-block';
